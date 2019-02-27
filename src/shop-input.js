@@ -84,6 +84,7 @@ $_documentContainer.innerHTML = `<dom-module id="shop-input">
         will-change: transform;
         -webkit-transform: translate3d(0px, -1.9em, 0px);
         transform: translate3d(0px, -1.9em, 0px);
+        transform-origin: right center;
       }
 
       /* Error message */

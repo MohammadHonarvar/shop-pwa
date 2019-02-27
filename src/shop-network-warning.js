@@ -41,11 +41,11 @@ class ShopNetworkWarning extends PolymerElement {
     </div>
     <div hidden\$="[[!offline]]">
       <iron-icon icon="perm-scan-wifi"></iron-icon>
-      <h1>No internet connection</h1>
-      <p>Check if your device is connected to a mobile network or WiFi.</p>
+      <h1>عدم دسترسی به اینترنت</h1>
+      <p>تنظیمات اتصال به اینترنت خود را چک بفرمائید</p>
     </div>
     <shop-button>
-      <button on-click="_tryReconnect">Try Again</button>
+      <button on-click="_tryReconnect">تلاش مجدد</button>
     </shop-button>
 `;
   }

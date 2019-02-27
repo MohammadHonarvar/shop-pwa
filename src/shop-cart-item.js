@@ -24,7 +24,7 @@ class ShopCartItem extends PolymerElement {
 
       shop-select > select {
         font-size: 16px;
-        padding-left: 40px;
+        padding-right: 40px;
       }
 
       shop-select > shop-md-decorator {
@@ -83,7 +83,7 @@ class ShopCartItem extends PolymerElement {
         color: var(--app-secondary-color);
         position: absolute;
         top: 18px;
-        right: 0;
+        left: 0;
       }
 
       .flex {
@@ -166,7 +166,7 @@ class ShopCartItem extends PolymerElement {
       <div class="detail">
         <div class="quantity">
           <shop-select>
-            <label prefix="">Qty:</label>
+            <label prefix="">تعداد:</label>
             <select id="quantitySelect" aria-label="Change quantity" value="[[entry.quantity]]" on-change="_quantityChange">
               <option value="1">1</option>
               <option value="2">2</option>
@@ -184,7 +184,7 @@ class ShopCartItem extends PolymerElement {
             <shop-md-decorator aria-hidden="true"></shop-md-decorator>
           </shop-select>
         </div>
-        <div class="size">Size: <span>[[entry.size]]</span></div>
+        <div class="size">اندازه: <span>[[entry.size]]</span></div>
         <div class="price">[[_formatPrice(entry.item.price)]]</div>
 
         <!--
@@ -218,7 +218,7 @@ class ShopCartItem extends PolymerElement {
   }
 
   _formatPrice(price) {
-    return price ? '$' + price.toFixed(2) : '';
+    return price ? price.toFixed(2) + ' تومان' : '';
   }
 
   _removeItem() {

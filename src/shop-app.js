@@ -61,7 +61,7 @@ class ShopApp extends PolymerElement {
       .logo a {
         font-size: 16px;
         font-weight: 600;
-        letter-spacing: 0.3em;
+        /* letter-spacing: 0.3em; */
         color: var(--app-primary-color);
         text-decoration: none;
         /* required for IE 11, so this <a> can receive pointer events */
@@ -243,10 +243,10 @@ class ShopApp extends PolymerElement {
           <paper-icon-button class="menu-btn" icon="menu" on-click="_toggleDrawer" aria-label="Categories">
           </paper-icon-button>
           <a class="back-btn" href="/list/[[categoryName]]" tabindex="-1">
-            <paper-icon-button icon="arrow-back" aria-label="Go back"></paper-icon-button>
+            <paper-icon-button icon="arrow-forward" aria-label="Go back"></paper-icon-button>
           </a>
         </div>
-        <div class="logo" main-title=""><a href="/" aria-label="SHOP Home">SHOP</a></div>
+        <div class="logo" main-title=""><a href="/" aria-label="فروشگاه">فروشگاه</a></div>
         <div class="cart-btn-container">
           <a href="/cart" tabindex="-1">
             <paper-icon-button icon="shopping-cart" aria-label\$="Shopping cart: [[_computePluralizedQuantity(numItems)]]"></paper-icon-button>
@@ -277,7 +277,7 @@ class ShopApp extends PolymerElement {
     <dom-if if="[[_shouldRenderDrawer]]">
       <template>
       <!-- Two-way bind \`drawerOpened\` since app-drawer can update \`opened\` itself. -->
-      <app-drawer opened="{{drawerOpened}}" swipe-open="" tabindex="0">
+      <app-drawer align="start" opened="{{drawerOpened}}" swipe-open="" tabindex="0">
         <iron-selector role="navigation" class="drawer-list" selected="[[categoryName]]" attr-for-selected="name">
           <dom-repeat items="[[categories]]" as="category" initial-count="4">
             <template>
@@ -293,9 +293,9 @@ class ShopApp extends PolymerElement {
       <!-- home view -->
       <shop-home name="home" categories="[[categories]]"></shop-home>
       <!-- list view of items in a category -->
-      <shop-list name="list" route="[[subroute]]" offline="[[offline]]"></shop-list>
+      <shop-list name="list" route="[[subroute]]" offline="[[offline]]" ulii="[[apiBaseUrl]]"></shop-list>
       <!-- detail view of one item -->
-      <shop-detail name="detail" route="[[subroute]]" offline="[[offline]]"></shop-detail>
+      <shop-detail name="detail" route="[[subroute]]" offline="[[offline]]" ulii="[[apiBaseUrl]]"></shop-detail>
       <!-- cart view -->
       <shop-cart name="cart" cart="[[cart]]" total="[[total]]"></shop-cart>
       <!-- checkout view -->
@@ -303,12 +303,6 @@ class ShopApp extends PolymerElement {
 
       <shop-404-warning name="404"></shop-404-warning>
     </iron-pages>
-
-    <footer>
-      <a href="https://www.polymer-project.org/3.0/toolbox/">Made by Polymer</a>
-      <div class="demo-label">Demo Only</div>
-    </footer>
-
     <!-- a11y announcer -->
     <div class="announcer" aria-live="assertive">[[_a11yLabel]]</div>
 `;
@@ -326,6 +320,11 @@ class ShopApp extends PolymerElement {
     numItems: {
       type: Number,
       value: 0
+    },
+
+    apiBaseUrl: {
+      type: String,
+      value: 'https://account.modir.app',
     },
 
     _shouldShowTabs: {
@@ -440,7 +439,7 @@ class ShopApp extends PolymerElement {
         this.root.appendChild(this._networkSnackbar);
       }
       this._networkSnackbar.innerHTML = this.offline ?
-          'You are offline' : 'You are online';
+          'شما آفلاین هستید.' : 'شما آنلاین هستید.';
       this._networkSnackbar.open();
     }
   }

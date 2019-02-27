@@ -148,7 +148,6 @@ class ShopList extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
     this.isAttached = true;
-    console.log(this.getAttribute('ulii'));
   }
 
   disconnectedCallback() {

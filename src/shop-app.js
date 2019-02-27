@@ -322,11 +322,6 @@ class ShopApp extends PolymerElement {
       value: 0
     },
 
-    apiBaseUrl: {
-      type: String,
-      value: 'https://account.modir.app',
-    },
-
     _shouldShowTabs: {
       computed: '_computeShouldShowTabs(page, smallScreen)'
     },

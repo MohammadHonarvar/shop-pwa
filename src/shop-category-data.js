@@ -1,6 +1,8 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import { Debouncer } from '@polymer/polymer/lib/utils/debounce.js';
 import { timeOut } from '@polymer/polymer/lib/utils/async.js';
+import { config } from './config';
+
 let categoryList = [
   {
     name: 'mens_outerwear',
@@ -100,7 +102,8 @@ class ShopCategoryData extends PolymerElement {
       return;
     }
     this._getResource({
-      url: 'data/' + category.name + '.json',
+      // url: 'data/' + category.name + '.json',
+      url: `${config.api.baseUrl}/products`,
       onLoad(e) {
         this.set('category.items', JSON.parse(e.target.responseText));
       },

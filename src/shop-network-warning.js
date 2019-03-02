@@ -37,7 +37,7 @@ class ShopNetworkWarning extends PolymerElement {
     </style>
 
     <div hidden\$="[[offline]]">
-      <h1>Couldn't reach the server</h1>
+      <h1>عدم دسترسی به سرور</h1>
     </div>
     <div hidden\$="[[!offline]]">
       <iron-icon icon="perm-scan-wifi"></iron-icon>

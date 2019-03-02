@@ -293,9 +293,9 @@ class ShopApp extends PolymerElement {
       <!-- home view -->
       <shop-home name="home" categories="[[categories]]"></shop-home>
       <!-- list view of items in a category -->
-      <shop-list name="list" route="[[subroute]]" offline="[[offline]]" ulii="[[apiBaseUrl]]"></shop-list>
+      <shop-list name="list" route="[[subroute]]" offline="[[offline]]"></shop-list>
       <!-- detail view of one item -->
-      <shop-detail name="detail" route="[[subroute]]" offline="[[offline]]" ulii="[[apiBaseUrl]]"></shop-detail>
+      <shop-detail name="detail" route="[[subroute]]" offline="[[offline]]"></shop-detail>
       <!-- cart view -->
       <shop-cart name="cart" cart="[[cart]]" total="[[total]]"></shop-cart>
       <!-- checkout view -->

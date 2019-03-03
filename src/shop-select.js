@@ -25,7 +25,7 @@ $_documentContainer.innerHTML = `<dom-module id="shop-select">
         display: block;
         position: absolute;
         bottom: calc(50% - 0.75em);
-        right: 8px;
+        left: 8px;
         speak: none;
         -webkit-transform: scaleY(.6);
         transform: scaleY(.6);
@@ -38,7 +38,7 @@ $_documentContainer.innerHTML = `<dom-module id="shop-select">
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
-        padding: 8px 24px 8px 0;
+        padding: 8px 0 8px 24px;
         border: none;
         background-color: transparent;
         border-radius: 0;
@@ -89,7 +89,7 @@ $_documentContainer.innerHTML = `<dom-module id="shop-select">
 
       shop-select > [prefix] {
         position: absolute;
-        left: 0px;
+        right: 0px;
         top: calc(50% - 8px);
         line-height: 16px;
         color: var(--app-secondary-color);

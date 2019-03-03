@@ -85,7 +85,8 @@ class ShopDetail extends PolymerElement {
 
       shop-select > select {
         font-size: 16px;
-        padding: 16px 24px 16px 70px;
+        padding: 16px 70px 16px 24px;
+        direction: ltr;
       }
 
       @media (max-width: 767px) {
@@ -147,7 +148,7 @@ class ShopDetail extends PolymerElement {
         <div class="price">[[_formatPrice(item.price)]]</div>
         <div class="pickers">
           <shop-select>
-            <label id="sizeLabel" prefix>Size</label>
+            <label id="sizeLabel" prefix>سایز</label>
             <select id="sizeSelect" aria-labelledby="sizeLabel">
               <option value="XS">XS</option>
               <option value="S">S</option>
@@ -160,7 +161,7 @@ class ShopDetail extends PolymerElement {
             </shop-md-decorator>
           </shop-select>
           <shop-select>
-            <label id="quantityLabel" prefix>Quantity</label>
+            <label id="quantityLabel" prefix>تعداد</label>
             <select id="quantitySelect" aria-labelledby="quantityLabel">
               <option value="1" selected>1</option>
               <option value="2">2</option>
@@ -174,11 +175,11 @@ class ShopDetail extends PolymerElement {
           </shop-select>
         </div>
         <div class="description">
-          <h2>Description</h2>
+          <h2>توضیحات</h2>
           <p id="desc"></p>
         </div>
         <shop-button responsive>
-          <button on-click="_addToCart" aria-label="Add this item to cart">Add to Cart</button>
+          <button on-click="_addToCart" aria-label="Add this item to cart">افزودن به سبد خرید</button>
         </shop-button>
       </div>
     </div>
@@ -254,7 +255,7 @@ class ShopDetail extends PolymerElement {
   }
 
   _formatPrice(price) {
-    return price ? '$' + price.toFixed(2) : '';
+    return price ? price.toFixed(2) + ' تومان' : '';
   }
 
   _addToCart() {

@@ -137,7 +137,7 @@ class ShopList extends PolymerElement {
       observer: '_offlineChanged'
     },
 
-    failure: Boolean
+    failure: Boolean,
 
   }}
 
@@ -148,6 +148,7 @@ class ShopList extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
     this.isAttached = true;
+    console.log(this.getAttribute('ulii'));
   }
 
   disconnectedCallback() {
@@ -170,7 +171,8 @@ class ShopList extends PolymerElement {
     if (!quantity) {
       return '';
     }
-    let pluralizedQ = quantity === 1 ? 'item' : 'items';
+    let pluralizedQ = 'عدد';
+    // let pluralizedQ = quantity === 1 ? 'item' : 'items';
     return  '(' + quantity + ' ' + pluralizedQ + ')';
   }
 

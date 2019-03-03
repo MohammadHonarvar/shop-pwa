@@ -44,7 +44,7 @@ class ShopCheckout extends PolymerElement {
       }
 
       .billing-address-picker > label {
-        margin-left: 12px;
+        margin-right: 12px;
       }
 
       .grid {
@@ -57,7 +57,7 @@ class ShopCheckout extends PolymerElement {
       }
 
       .grid > section:not(:first-child) {
-        margin-left: 80px;
+        margin-right: 80px;
       }
 
       .row {
@@ -75,7 +75,7 @@ class ShopCheckout extends PolymerElement {
       }
 
       .input-row > *:not(:first-child) {
-        margin-left: 8px;
+        margin-right: 8px;
       }
 
       .shop-select-label {
@@ -99,7 +99,7 @@ class ShopCheckout extends PolymerElement {
         }
 
         .grid > section:not(:first-child) {
-          margin-left: 0;
+          margin-right: 0;
         }
 
       }
@@ -119,20 +119,20 @@ class ShopCheckout extends PolymerElement {
               </div>
 
               <header class="subsection" visible$="[[_hasItems]]">
-                <h1>Checkout</h1>
-                <span>Shop is a demo app - form data will not be sent</span>
+                <h1>پرداخت</h1>
+                <!--<span>Shop is a demo app - form data will not be sent</span>-->
               </header>
 
               <div class="subsection grid" visible$="[[_hasItems]]">
                 <section>
-                  <h2 id="accountInfoHeading">Account Information</h2>
+                  <h2 id="accountInfoHeading">اطلاعات حساب</h2>
                   <div class="row input-row">
                     <shop-input>
                       <input type="email" id="accountEmail" name="accountEmail"
-                          placeholder="Email" autofocus required
+                          placeholder="ایمیل" autofocus required
                           aria-labelledby="accountEmailLabel accountInfoHeading">
-                      <shop-md-decorator error-message="Invalid Email" aria-hidden="true">
-                        <label id="accountEmailLabel">Email</label>
+                      <shop-md-decorator error-message="ایمیل نامعتبر" aria-hidden="true">
+                        <label id="accountEmailLabel">ایمیل</label>
                         <shop-underline></shop-underline>
                       </shop-md-decorator>
                     </shop-input>
@@ -140,22 +140,22 @@ class ShopCheckout extends PolymerElement {
                   <div class="row input-row">
                     <shop-input>
                       <input type="tel" id="accountPhone" name="accountPhone" pattern="\\d{10,}"
-                          placeholder="Phone Number" required
+                          placeholder="شماره همراه" required
                           aria-labelledby="accountPhoneLabel accountInfoHeading">
-                      <shop-md-decorator error-message="Invalid Phone Number" aria-hidden="true">
-                        <label id="accountPhoneLabel">Phone Number</label>
+                      <shop-md-decorator error-message="شماره همراه نامعتبر" aria-hidden="true">
+                        <label id="accountPhoneLabel">شماره همراه</label>
                         <shop-underline></shop-underline>
                       </shop-md-decorator>
                     </shop-input>
                   </div>
-                  <h2 id="shipAddressHeading">Shipping Address</h2>
+                  <h2 id="shipAddressHeading">آدرس محل دریافت</h2>
                   <div class="row input-row">
                     <shop-input>
                       <input type="text" id="shipAddress" name="shipAddress" pattern=".{5,}"
-                          placeholder="Address" required
+                          placeholder="آدرس" required
                           aria-labelledby="shipAddressLabel shipAddressHeading">
-                      <shop-md-decorator error-message="Invalid Address" aria-hidden="true">
-                        <label id="shipAddressLabel">Address</label>
+                      <shop-md-decorator error-message="آدرس نامعتبر" aria-hidden="true">
+                        <label id="shipAddressLabel">آدرس</label>
                         <shop-underline></shop-underline>
                       </shop-md-decorator>
                     </shop-input>
@@ -163,10 +163,10 @@ class ShopCheckout extends PolymerElement {
                   <div class="row input-row">
                     <shop-input>
                       <input type="text" id="shipCity" name="shipCity" pattern=".{2,}"
-                          placeholder="City" required
+                          placeholder="شهر" required
                           aria-labelledby="shipCityLabel shipAddressHeading">
-                      <shop-md-decorator error-message="Invalid City" aria-hidden="true">
-                        <label id="shipCityLabel">City</label>
+                      <shop-md-decorator error-message="شهر نامعتبر" aria-hidden="true">
+                        <label id="shipCityLabel">شهر</label>
                         <shop-underline></shop-underline>
                       </shop-md-decorator>
                     </shop-input>
@@ -174,54 +174,54 @@ class ShopCheckout extends PolymerElement {
                   <div class="row input-row">
                     <shop-input>
                       <input type="text" id="shipState" name="shipState" pattern=".{2,}"
-                          placeholder="State/Province" required
+                          placeholder="استان" required
                           aria-labelledby="shipStateLabel shipAddressHeading">
-                      <shop-md-decorator error-message="Invalid State/Province" aria-hidden="true">
-                        <label id="shipStateLabel">State/Province</label>
+                      <shop-md-decorator error-message="استان نامعتبر" aria-hidden="true">
+                        <label id="shipStateLabel">استان</label>
                         <shop-underline></shop-underline>
                       </shop-md-decorator>
                     </shop-input>
                     <shop-input>
                       <input type="text" id="shipZip" name="shipZip" pattern=".{4,}"
-                          placeholder="Zip/Postal Code" required
+                          placeholder="کد پستی" required
                           aria-labelledby="shipZipLabel shipAddressHeading">
-                      <shop-md-decorator error-message="Invalid Zip/Postal Code" aria-hidden="true">
-                        <label id="shipZipLabel">Zip/Postal Code</label>
+                      <shop-md-decorator error-message="کدپستی نامعتبر" aria-hidden="true">
+                        <label id="shipZipLabel">کد پستی</label>
                         <shop-underline></shop-underline>
                       </shop-md-decorator>
                     </shop-input>
                   </div>
                   <div class="column">
-                    <label id="shipCountryLabel" class="shop-select-label">Country</label>
+                    <label id="shipCountryLabel" class="shop-select-label">کشور</label>
                     <shop-select>
                       <select id="shipCountry" name="shipCountry" required
                           aria-labelledby="shipCountryLabel shipAddressHeading">
-                        <option value="US" selected>United States</option>
-                        <option value="CA">Canada</option>
+                        <option value="US" selected>ایران</option>
+                        <option value="CA">مرگ بر اسرائیل</option>
                       </select>
                       <shop-md-decorator aria-hidden="true">
                         <shop-underline></shop-underline>
                       </shop-md-decorator>
                     </shop-select>
                   </div>
-                  <h2 id="billAddressHeading">Billing Address</h2>
+                  <h2 id="billAddressHeading">آدرس محل سکونت</h2>
                   <div class="billing-address-picker">
                     <shop-checkbox>
                       <input type="checkbox" id="setBilling" name="setBilling"
                           checked$="[[hasBillingAddress]]" on-change="_toggleBillingAddress">
                       <shop-md-decorator></shop-md-decorator aria-hidden="true">
                     </shop-checkbox>
-                    <label for="setBilling">Use different billing address</label>
+                    <label for="setBilling">یک آدرس دیگر وارد کنید</label>
                   </div>
                   <div hidden$="[[!hasBillingAddress]]">
                     <div class="row input-row">
                       <shop-input>
                         <input type="text" id="billAddress" name="billAddress" pattern=".{5,}"
-                            placeholder="Address" required$="[[hasBillingAddress]]"
+                            placeholder="آدرس" required$="[[hasBillingAddress]]"
                             autocomplete="billing street-address"
                             aria-labelledby="billAddressLabel billAddressHeading">
-                        <shop-md-decorator error-message="Invalid Address" aria-hidden="true">
-                          <label id="billAddressLabel">Address</label>
+                        <shop-md-decorator error-message="آدرس نامعتبر" aria-hidden="true">
+                          <label id="billAddressLabel">آدرس</label>
                           <shop-underline></shop-underline>
                         </shop-md-decorator>
                       </shop-input>
@@ -229,11 +229,11 @@ class ShopCheckout extends PolymerElement {
                     <div class="row input-row">
                       <shop-input>
                         <input type="text" id="billCity" name="billCity" pattern=".{2,}"
-                            placeholder="City" required$="[[hasBillingAddress]]"
+                            placeholder="شهر" required$="[[hasBillingAddress]]"
                             autocomplete="billing address-level2"
                             aria-labelledby="billCityLabel billAddressHeading">
-                        <shop-md-decorator error-message="Invalid City" aria-hidden="true">
-                          <label id="billCityLabel">City</label>
+                        <shop-md-decorator error-message="شهر نامعتبر" aria-hidden="true">
+                          <label id="billCityLabel">شهر</label>
                           <shop-underline></shop-underline>
                         </shop-md-decorator>
                       </shop-input>
@@ -241,33 +241,33 @@ class ShopCheckout extends PolymerElement {
                     <div class="row input-row">
                       <shop-input>
                         <input type="text" id="billState" name="billState" pattern=".{2,}"
-                            placeholder="State/Province" required$="[[hasBillingAddress]]"
+                            placeholder="استان" required$="[[hasBillingAddress]]"
                             autocomplete="billing address-level1"
                             aria-labelledby="billStateLabel billAddressHeading">
-                        <shop-md-decorator error-message="Invalid State/Province" aria-hidden="true">
-                          <label id="billStateLabel">State/Province</label>
+                        <shop-md-decorator error-message="استان نامعتبر" aria-hidden="true">
+                          <label id="billStateLabel">استان</label>
                           <shop-underline></shop-underline>
                         </shop-md-decorator>
                       </shop-input>
                       <shop-input>
                         <input type="text" id="billZip" name="billZip" pattern=".{4,}"
-                            placeholder="Zip/Postal Code" required$="[[hasBillingAddress]]"
+                            placeholder="کد پستی" required$="[[hasBillingAddress]]"
                             autocomplete="billing postal-code"
                             aria-labelledby="billZipLabel billAddressHeading">
-                        <shop-md-decorator error-message="Invalid Zip/Postal Code" aria-hidden="true">
-                          <label id="billZipLabel">Zip/Postal Code</label>
+                        <shop-md-decorator error-message="کد پستی نامعتبر" aria-hidden="true">
+                          <label id="billZipLabel">کد پستی</label>
                           <shop-underline></shop-underline>
                         </shop-md-decorator>
                       </shop-input>
                     </div>
                     <div class="column">
-                      <label id="billCountryLabel" class="shop-select-label">Country</label>
+                      <label id="billCountryLabel" class="shop-select-label">کشور</label>
                       <shop-select>
                         <select id="billCountry" name="billCountry" required$="[[hasBillingAddress]]"
                             autocomplete="billing country"
                             aria-labelledby="billCountryLabel billAddressHeading">
-                          <option value="US" selected>United States</option>
-                          <option value="CA">Canada</option>
+                          <option value="US" selected>ایران</option>
+                          <option value="CA">مرگ بر اسرائیل</option>
                         </select>
                         <shop-md-decorator aria-hidden="true">
                           <shop-underline></shop-underline>
@@ -278,14 +278,14 @@ class ShopCheckout extends PolymerElement {
                 </section>
 
                 <section>
-                  <h2>Payment Method</h2>
+                  <h2>روش پرداخت</h2>
                   <div class="row input-row">
                     <shop-input>
                       <input type="text" id="ccName" name="ccName" pattern=".{3,}"
-                          placeholder="Cardholder Name" required
+                          placeholder="نام دارنده کارت" required
                           autocomplete="cc-name">
-                      <shop-md-decorator error-message="Invalid Cardholder Name" aria-hidden="true">
-                        <label for="ccName">Cardholder Name</label>
+                      <shop-md-decorator error-message="دارنده کارت نامعتبر" aria-hidden="true">
+                        <label for="ccName">نام دارنده کارت</label>
                         <shop-underline></shop-underline>
                       </shop-md-decorator>
                     </shop-input>
@@ -293,32 +293,32 @@ class ShopCheckout extends PolymerElement {
                   <div class="row input-row">
                     <shop-input>
                       <input type="tel" id="ccNumber" name="ccNumber" pattern="[\\d\\s]{15,}"
-                          placeholder="Card Number" required
+                          placeholder="شماره کارت" required
                           autocomplete="cc-number">
-                      <shop-md-decorator error-message="Invalid Card Number" aria-hidden="true">
-                        <label for="ccNumber">Card Number</label>
+                      <shop-md-decorator error-message="شماره کارت نامعتبر" aria-hidden="true">
+                        <label for="ccNumber">شماره کارت</label>
                         <shop-underline></shop-underline>
                       </shop-md-decorator>
                     </shop-input>
                   </div>
                   <div class="row input-row">
                     <div class="column">
-                      <label for="ccExpMonth">Expiry</label>
+                      <label for="ccExpMonth">تاریخ انقضاء</label>
                       <shop-select>
                         <select id="ccExpMonth" name="ccExpMonth" required
                              autocomplete="cc-exp-month" aria-label="Expiry month">
-                          <option value="01" selected>Jan</option>
-                          <option value="02">Feb</option>
-                          <option value="03">Mar</option>
-                          <option value="04">Apr</option>
-                          <option value="05">May</option>
-                          <option value="06">Jun</option>
-                          <option value="07">Jul</option>
-                          <option value="08">Aug</option>
-                          <option value="09">Sep</option>
-                          <option value="10">Oct</option>
-                          <option value="11">Nov</option>
-                          <option value="12">Dec</option>
+                          <option value="01" selected>فروردین</option>
+                          <option value="02">اردیبهشت</option>
+                          <option value="03">خرداد</option>
+                          <option value="04">تیر</option>
+                          <option value="05">مرداد</option>
+                          <option value="06">شهریور</option>
+                          <option value="07">مهر</option>
+                          <option value="08">آبان</option>
+                          <option value="09">آذر</option>
+                          <option value="10">دی</option>
+                          <option value="11">بهمن</option>
+                          <option value="12">اسفند</option>
                         </select>
                         <shop-md-decorator aria-hidden="true">
                           <shop-underline></shop-underline>
@@ -328,17 +328,8 @@ class ShopCheckout extends PolymerElement {
                     <shop-select>
                       <select id="ccExpYear" name="ccExpYear" required
                           autocomplete="cc-exp-year" aria-label="Expiry year">
-                        <option value="2016" selected>2016</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2018</option>
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
-                        <option value="2026">2026</option>
+                        <option value="2016" selected>1397</option>
+                        <option value="2017">1398</option>
                       </select>
                       <shop-md-decorator aria-hidden="true">
                         <shop-underline></shop-underline>
@@ -348,13 +339,13 @@ class ShopCheckout extends PolymerElement {
                       <input type="tel" id="ccCVV" name="ccCVV" pattern="\\d{3,4}"
                           placeholder="CVV" required
                           autocomplete="cc-csc">
-                      <shop-md-decorator error-message="Invalid CVV" aria-hidden="true">
+                      <shop-md-decorator error-message="CVV نامعتبر" aria-hidden="true">
                         <label for="ccCVV">CVV</label>
                         <shop-underline></shop-underline>
                       </shop-md-decorator>
                     </shop-input>
                   </div>
-                  <h2>Order Summary</h2>
+                  <h2>خلاصه سفارش</h2>
                   <dom-repeat items="[[cart]]" as="entry">
                     <template>
                       <div class="row order-summary-row">
@@ -364,11 +355,11 @@ class ShopCheckout extends PolymerElement {
                     </template>
                   </dom-repeat>
                   <div class="row total-row">
-                    <div class="flex">Total</div>
+                    <div class="flex">جمع کل:</div>
                     <div>[[_formatPrice(total)]]</div>
                   </div>
                   <shop-button responsive id="submitBox">
-                    <input type="button" on-click="_submit" value="Place Order">
+                    <input type="button" on-click="_submit" value="ثبت سفارش">
                   </shop-button>
                 </section>
               </div>
@@ -378,19 +369,19 @@ class ShopCheckout extends PolymerElement {
 
         <!-- Success message UI -->
         <header state="success">
-          <h1>Thank you</h1>
+          <h1>با تشکر</h1>
           <p>[[response.successMessage]]</p>
           <shop-button responsive>
-            <a href="/">Finish</a>
+            <a href="/">اتمام</a>
           </shop-button>
         </header>
 
         <!-- Error message UI -->
         <header state="error">
-          <h1>We couldn&acute;t process your order</h1>
+          <h1>خطا در ثبت سفارش!</h1>
           <p id="errorMessage">[[response.errorMessage]]</p>
           <shop-button responsive>
-            <a href="/checkout">Try again</a>
+            <a href="/checkout">لطفن مجددن تلاش فرمائید</a>
           </shop-button>
         </header>
 
@@ -501,7 +492,7 @@ class ShopCheckout extends PolymerElement {
             composed: true, detail: {
               response: {
                 success: 1,
-                successMessage: 'Demo checkout process complete.'
+                successMessage: 'فرآیند پرداخت با مفقیت انجام شد.'
               }
             }}));
         });
@@ -646,7 +637,7 @@ class ShopCheckout extends PolymerElement {
   }
 
   _formatPrice(total) {
-    return isNaN(total) ? '' : '$' + total.toFixed(2);
+    return isNaN(total) ? '' : total.toFixed(2) + ' تومان';
   }
 
   _getEntryTotal(entry) {

@@ -59,7 +59,7 @@ class ShopCartModal extends mixinBehaviors(
 
       #closeBtn {
         position: absolute;
-        right: 5px;
+        left: 5px;
         top: 5px;
       }
 
@@ -80,14 +80,14 @@ class ShopCartModal extends mixinBehaviors(
     </style>
 
     <div class="layout-horizontal">
-      <div class="label">Added to cart</div>
+      <div class="label">به سبد خرید افزوده شد</div>
     </div>
     <div class="layout-horizontal">
       <shop-button class="modal-button">
-        <a href="/cart" on-click="close" id="viewCartAnchor">View Cart</a>
+        <a href="/cart" on-click="close" id="viewCartAnchor">سبد خرید</a>
       </shop-button>
       <shop-button class="modal-button">
-        <a href="/checkout" on-click="close">Checkout</a>
+        <a href="/checkout" on-click="close">پرداخت</a>
       </shop-button>
     </div>
 

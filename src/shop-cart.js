@@ -14,7 +14,7 @@ class ShopCart extends PolymerElement {
 
       .checkout-box {
         font-weight: bold;
-        text-align: right;
+        text-align: left;
         margin-right: 10px;
       }
 
@@ -25,20 +25,19 @@ class ShopCart extends PolymerElement {
       @media (max-width: 767px) {
 
         .subtotal {
-          margin: 0 0 0 24px;
+          margin: 0 24px 0 0;
         }
 
       }
-
     </style>
 
     <div class="main-frame">
       <div class="subsection" visible$="[[!_hasItems]]">
-        <p class="empty-cart">Your <iron-icon icon="shopping-cart"></iron-icon> is empty.</p>
+        <p class="empty-cart"><iron-icon icon="shopping-cart"></iron-icon> شما خالی است!</p>
       </div>
       <div class="subsection" visible$="[[_hasItems]]">
         <header>
-          <h1>Your Cart</h1>
+          <h1>سبد شما</h1>
           <span>([[_getPluralizedQuantity(cart.length)]])</span>
         </header>
         <div class="list">
@@ -49,9 +48,9 @@ class ShopCart extends PolymerElement {
           </dom-repeat>
         </div>
         <div class="checkout-box">
-          Total: <span class="subtotal">[[_formatTotal(total)]]</span>
+          جمع کل: <span class="subtotal">[[_formatTotal(total)]]</span>
           <shop-button responsive>
-            <a href="/checkout">Checkout</a>
+            <a href="/checkout">پرداخت</a>
           </shop-button>
         </div>
       </div>
@@ -79,7 +78,7 @@ class ShopCart extends PolymerElement {
   }}
 
   _formatTotal(total) {
-    return isNaN(total) ? '' : '$' + total.toFixed(2);
+    return isNaN(total) ? '' : total.toFixed(2) + ' تومان';
   }
 
   _computeHasItem(cartLength) {
@@ -87,14 +86,14 @@ class ShopCart extends PolymerElement {
   }
 
   _getPluralizedQuantity(quantity) {
-    return quantity + ' ' + (quantity === 1 ? 'item' : 'items');
+    return quantity + ' ' + (quantity === 1 ? 'آیتم' : 'عدد');
   }
 
   _visibleChanged(visible) {
     if (visible) {
       // Notify the section's title
       this.dispatchEvent(new CustomEvent('change-section', {
-        bubbles: true, composed: true, detail: { title: 'Your cart' }}));
+        bubbles: true, composed: true, detail: { title: 'سبد شما' }}));
     }
   }
 

@@ -3,6 +3,8 @@ module.exports = {
     'manifest.json',
     'images/*',
     'src/**/*',
+    'fonts/*.css',
+    'fonts/woff2/*',
   ],
   runtimeCaching: [
     {
@@ -10,7 +12,7 @@ module.exports = {
       handler: 'fastest'
     },
     {
-      urlPattern: /\/data\//,
+      urlPattern: /^https:\/\/account.modir.app\//,
       handler: 'fastest'
     }
   ]

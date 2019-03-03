@@ -157,12 +157,12 @@ class ShopCartItem extends PolymerElement {
 
     </style>
 
-    <a href\$="/detail/[[entry.item.category]]/[[entry.item.name]]" title\$="[[entry.item.title]]">
+    <a href\$="/detail/[[_getCategory(entry.item.tags)]]/[[entry.item.name]]" title\$="[[entry.item.title]]">
       <shop-image src="[[_getImageUrl(entry.item.image)]]" alt="[[entry.item.title]]"></shop-image>
     </a>
     <div class="flex">
       <div class="name">
-        <a href\$="/detail/[[entry.item.category]]/[[entry.item.name]]">[[entry.item.title]]</a>
+        <a href\$="/detail/[[_getCategory(entry.item.tags)]]/[[entry.item.name]]">[[entry.item.title]]</a>
       </div>
       <div class="detail">
         <div class="quantity">
@@ -228,6 +228,10 @@ class ShopCartItem extends PolymerElement {
 
   _getImageUrl (image) {
     return getImageUrl(image);
+  }
+
+  _getCategory(tagList) {
+    return tagList[0].name;
   }
 }
 

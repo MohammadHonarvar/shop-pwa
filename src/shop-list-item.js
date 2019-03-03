@@ -1,5 +1,6 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
+import { getImageUrl } from './config';
 
 class ShopListItem extends PolymerElement {
   static get template() {
@@ -40,7 +41,7 @@ class ShopListItem extends PolymerElement {
 
     </style>
 
-    <shop-image src="[[item.image]]" alt="[[item.title]]"></shop-image>
+    <shop-image src="[[_getImageUrl(item.image)]]" alt="[[item.title]]"></shop-image>
     <div class="title">[[item.title]]</div>
     <span class="price">[[_formatPrice(item.price)]]</span>
 `;
@@ -56,6 +57,10 @@ class ShopListItem extends PolymerElement {
 
   _formatPrice(price) {
     return price ? price.toFixed(2) + ' تومان' : '';
+  }
+
+  _getImageUrl (image) {
+    return getImageUrl(image);
   }
 }
 

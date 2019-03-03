@@ -242,7 +242,8 @@ class ShopApp extends PolymerElement {
         <div class="left-bar-item">
           <paper-icon-button class="menu-btn" icon="menu" on-click="_toggleDrawer" aria-label="Categories">
           </paper-icon-button>
-          <a class="back-btn" href="/list/[[categoryName]]" tabindex="-1">
+          <!-- <a class="back-btn" href="/list/[[categoryName]]" tabindex="-1"> -->
+          <a class="back-btn" on-click="_goBack" tabindex="-1">
             <paper-icon-button icon="arrow-forward" aria-label="Go back"></paper-icon-button>
           </a>
         </div>
@@ -293,9 +294,9 @@ class ShopApp extends PolymerElement {
       <!-- home view -->
       <shop-home name="home" categories="[[categories]]"></shop-home>
       <!-- list view of items in a category -->
-      <shop-list name="list" route="[[subroute]]" offline="[[offline]]" ulii="[[apiBaseUrl]]"></shop-list>
+      <shop-list name="list" route="[[subroute]]" offline="[[offline]]"></shop-list>
       <!-- detail view of one item -->
-      <shop-detail name="detail" route="[[subroute]]" offline="[[offline]]" ulii="[[apiBaseUrl]]"></shop-detail>
+      <shop-detail name="detail" route="[[subroute]]" offline="[[offline]]"></shop-detail>
       <!-- cart view -->
       <shop-cart name="cart" cart="[[cart]]" total="[[total]]"></shop-cart>
       <!-- checkout view -->
@@ -320,11 +321,6 @@ class ShopApp extends PolymerElement {
     numItems: {
       type: Number,
       value: 0
-    },
-
-    apiBaseUrl: {
-      type: String,
-      value: 'https://account.modir.app',
     },
 
     _shouldShowTabs: {
@@ -566,6 +562,10 @@ class ShopApp extends PolymerElement {
 
   _computePluralizedQuantity(quantity) {
     return quantity + ' ' + (quantity === 1 ? 'item' : 'items');
+  }
+
+  _goBack() {
+    window.history.back();
   }
 }
 

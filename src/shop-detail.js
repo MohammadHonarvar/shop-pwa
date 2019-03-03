@@ -8,6 +8,7 @@ import './shop-image.js';
 import './shop-select.js';
 import { Debouncer } from '@polymer/polymer/lib/utils/debounce.js';
 import { microTask } from '@polymer/polymer/lib/utils/async.js';
+import { getImageUrl } from './config.js';
 
 class ShopDetail extends PolymerElement {
   static get template() {
@@ -76,6 +77,7 @@ class ShopDetail extends PolymerElement {
       .description > p {
         margin: 0;
         color: var(--app-secondary-color);
+        text-align: justify;
       }
 
       .pickers {
@@ -87,6 +89,10 @@ class ShopDetail extends PolymerElement {
         font-size: 16px;
         padding: 16px 70px 16px 24px;
         direction: ltr;
+      }
+
+      button {
+        font-family: inherit;
       }
 
       @media (max-width: 767px) {
@@ -142,7 +148,7 @@ class ShopDetail extends PolymerElement {
         failure="{{failure}}"></shop-category-data>
 
     <div id="content" hidden$="[[failure]]">
-      <shop-image alt="[[item.title]]" src="[[item.largeImage]]"></shop-image>
+      <shop-image alt="[[item.title]]" src="[[_getImageUrl(item.largeImage)]]"></shop-image>
       <div class="detail" has-content$="[[_isDefined(item)]]">
         <h1>[[item.title]]</h1>
         <div class="price">[[_formatPrice(item.price)]]</div>
@@ -179,7 +185,7 @@ class ShopDetail extends PolymerElement {
           <p id="desc"></p>
         </div>
         <shop-button responsive>
-          <button on-click="_addToCart" aria-label="Add this item to cart">افزودن به سبد خرید</button>
+          <button on-click="_addToCart" aria-label="افزودن به سبد خرید">افزودن به سبد خرید</button>
         </shop-button>
       </div>
     </div>
@@ -242,7 +248,7 @@ class ShopDetail extends PolymerElement {
               category: item ? item.category : '',
               title: item ? item.title : '',
               description: item ? item.description.substring(0, 100) : '',
-              image: item ? this.baseURI + item.image : ''
+              image: item ? this._getImageUrl(item.image) : ''
             }}));
         })
     }
@@ -282,6 +288,9 @@ class ShopDetail extends PolymerElement {
     }
   }
 
+  _getImageUrl (image) {
+    return getImageUrl(image);
+  }
 }
 
 customElements.define(ShopDetail.is, ShopDetail);

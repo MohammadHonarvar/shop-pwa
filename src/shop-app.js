@@ -242,7 +242,8 @@ class ShopApp extends PolymerElement {
         <div class="left-bar-item">
           <paper-icon-button class="menu-btn" icon="menu" on-click="_toggleDrawer" aria-label="Categories">
           </paper-icon-button>
-          <a class="back-btn" href="/list/[[categoryName]]" tabindex="-1">
+          <!-- <a class="back-btn" href="/list/[[categoryName]]" tabindex="-1"> -->
+          <a class="back-btn" on-click="_goBack" tabindex="-1">
             <paper-icon-button icon="arrow-forward" aria-label="Go back"></paper-icon-button>
           </a>
         </div>
@@ -561,6 +562,10 @@ class ShopApp extends PolymerElement {
 
   _computePluralizedQuantity(quantity) {
     return quantity + ' ' + (quantity === 1 ? 'item' : 'items');
+  }
+
+  _goBack() {
+    window.history.back();
   }
 }
 

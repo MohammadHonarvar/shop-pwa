@@ -217,7 +217,7 @@ class ShopApp extends PolymerElement {
 
     </style>
 
-    <shop-analytics key="UA-39334307-16"></shop-analytics>
+    <!-- <shop-analytics key="UA-39334307-16"></shop-analytics> -->
     <!--
       app-location and app-route elements provide the state of the URL for the app.
     -->

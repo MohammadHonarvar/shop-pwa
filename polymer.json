@@ -2,8 +2,8 @@
   "entrypoint": "index.html",
   "shell": "src/shop-app.js",
   "sources": [
-    "data/**/*",
-    "images/**/*"
+    "images/**/*",
+    "fonts/**/*"
   ],
   "extraDependencies": [
     "manifest.json",

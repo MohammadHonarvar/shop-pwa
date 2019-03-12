@@ -1,0 +1,104 @@
+version: '2.4'
+
+networks:
+  internal:
+  web:
+    external:
+      name: pazh-web-proxy
+
+x-srv:
+  &pazh-srv
+
+  networks:
+    - internal
+
+  restart: unless-stopped
+  tty: true
+
+  # cpus: 0.5
+  # cpuset: '0'
+  cpu_shares: 1024
+  mem_limit: 1g
+  # memswap_limit: 2g
+
+  # ulimits:
+  #   nproc: 65535
+  #   nofile:
+  #     soft: 49999
+  #     hard: 99999
+
+  logging:
+    driver: json-file
+    options:
+      max-size: '12m'
+      max-file: '2'
+
+x-labels:
+  &pazh-labels
+  pazh.project: $PROJECT
+  pazh.domain:  $DOMAIN
+  pazh.version: 'v2.0.0'
+
+services:
+  pwa:
+    << : *pazh-srv
+    build: .
+    hostname: $DOMAIN # set to fqdn of host
+    networks:
+      - web
+    labels:
+      << : *pazh-labels
+      traefik.enable: true
+      traefik.backend: ${PROJECT}
+      traefik.port: 8080
+      traefik.frontend.rule: Host:${DOMAIN}
+      traefik.frontend.entryPoints: http, https
+      traefik.frontend.redirect.entryPoint: https
+
+#   api:
+#     << : *pazh-srv
+#     image: strapi/strapi # https://hub.docker.com/r/strapi/strapi
+#     networks:
+#       - internal
+#       - web
+
+#     volumes:
+#       - type: bind
+#         source: ./_data/api
+#         target: /usr/src/api/$PROJECT
+
+#     environment:
+#       APP_NAME: $PROJECT
+#       DATABASE_CLIENT: mongo
+#       DATABASE_HOST: db
+#       DATABASE_PORT: 27017
+#       DATABASE_NAME: $DATABASE_NAME
+#       #DATABASE_SSL: false
+#       #DATABASE_USERNAME: $DATABASE_USERNAME
+#       #DATABASE_PASSWORD: $DATABASE_PASSWORD
+#       DATABASE_AUTHENTICATION_DATABASE: $DATABASE_NAME
+#       # HOST: localhost
+
+#     labels:
+#       traefik.enable: true
+#       traefik.backend: ${PROJECT}-api
+#       traefik.port: 1337
+#       traefik.frontend.rule: Host:${DOMAIN}
+#       traefik.frontend.entryPoints: http, https
+#       traefik.frontend.redirect.entryPoint: https
+
+#   db:
+#     image: mongo
+#     networks:
+#       - internal
+#     restart: unless-stopped
+
+#     volumes:
+#       - type: bind
+#         source: ./_data/database
+#         target: /data/db
+
+#     environment:
+#       MONGO_INITDB_DATABASE: $DATABASE_NAME
+#       #MONGO_INITDB_ROOT_USERNAME: $DATABASE_USERNAME
+#       #MONGO_INITDB_ROOT_PASSWORD: $DATABASE_PASSWORD

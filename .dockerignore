@@ -1,0 +1,23 @@
+# Docker
+/Dockerfile
+/.dockerignore
+
+# Git
+/.git
+.gitignore
+
+# OSX
+.DS_Store
+._*
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# App
+/test
+/node_modules
+/build
+
+/sample.env
+/.env

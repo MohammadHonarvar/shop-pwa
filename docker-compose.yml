@@ -49,7 +49,7 @@ services:
     labels:
       << : *pazh-labels
       traefik.enable: true
-      traefik.backend: ${PROJECT}
+      traefik.backend: ${PROJECT}-pwa
       traefik.port: 8080
       traefik.frontend.rule: Host:${DOMAIN_PWA}
       traefik.frontend.entryPoints: http, https
@@ -79,7 +79,7 @@ services:
       DATABASE_NAME: $DATABASE_NAME
       DATABASE_USERNAME: $DATABASE_USERNAME
       DATABASE_PASSWORD: $DATABASE_PASSWORD
-      DATABASE_AUTHENTICATION_DATABASE: $DATABASE_NAME
+      DATABASE_AUTHENTICATION_DATABASE: admin
       #DATABASE_SSL: false
       #DATABASE_SRV: false
 
@@ -107,3 +107,6 @@ services:
       MONGO_INITDB_DATABASE: $DATABASE_NAME
       MONGO_INITDB_ROOT_USERNAME: $DATABASE_USERNAME
       MONGO_INITDB_ROOT_PASSWORD: $DATABASE_PASSWORD
+
+    labels:
+      << : *pazh-labels

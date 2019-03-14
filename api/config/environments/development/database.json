@@ -5,15 +5,15 @@
       "settings": {
         "client": "mongo",
         "host": "database",
+        "srv": false,
         "port": "27017",
         "database": "pwa-shop",
         "username": "modir",
-        "password": "Pazh_3380",
-        "srv": false
+        "password": "Pazh_3380"
       },
       "options": {
         "authenticationDatabase": "admin",
-        "ssl": false
+        "ssl": ""
       },
       "connector": "strapi-hook-mongoose"
     }

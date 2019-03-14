@@ -88,7 +88,7 @@ services:
       traefik.enable: true
       traefik.backend: ${PROJECT}-api
       traefik.port: 1337
-      traefik.frontend.rule: Host:${DOMAIN}
+      traefik.frontend.rule: Host:${DOMAIN_API}
       traefik.frontend.entryPoints: http, https
       traefik.frontend.redirect.entryPoint: https
 

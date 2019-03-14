@@ -1,6 +1,7 @@
 # Docker
 /Dockerfile
 /.dockerignore
+/docker-compose.yml
 
 # Git
 /.git
@@ -18,6 +19,8 @@ Desktop.ini
 /test
 /node_modules
 /build
+/.api
+/_data
 
 /sample.env
 /.env

@@ -11,13 +11,6 @@ const _ = require('lodash');
 
 module.exports = {
 
-  ali: () => {
-    const ret = Test.find();
-    ret.push({hello: 'world'});
-    return ret;
-
-  },
-
   /**
    * Promise to fetch all tests.
    *

@@ -9,7 +9,7 @@
 module.exports = {
 
   ali: async (ctx) => {
-    return strapi.services.test.ali(ctx.query);
+    return ctx.send('Hello World!');
   },
 
   /**

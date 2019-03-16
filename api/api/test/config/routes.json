@@ -2,6 +2,14 @@
   "routes": [
     {
       "method": "GET",
+      "path": "/ali",
+      "handler": "Test.ali",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/tests",
       "handler": "Test.find",
       "config": {

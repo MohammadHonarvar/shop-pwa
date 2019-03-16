@@ -8,6 +8,10 @@
 
 module.exports = {
 
+  ali: async (ctx) => {
+    return strapi.services.test.ali(ctx.query);
+  },
+
   /**
    * Retrieve test records.
    *

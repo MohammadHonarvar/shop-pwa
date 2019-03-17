@@ -1,6 +1,7 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import './shop-button.js';
 import './shop-image.js';
+import { getImageUrl } from './config.js';
 
 class ShopHome extends PolymerElement {
   static get template() {
@@ -92,7 +93,7 @@ class ShopHome extends PolymerElement {
       <template strip-whitespace="">
         <div class="item">
           <a class="image-link" href\$="/list/[[item.name]]">
-            <shop-image src="[[item.image]]" alt="[[item.title]]" placeholder-img="[[item.placeholder]]"></shop-image>
+            <shop-image src="[[_getImageUrl(item.image)]]" alt="[[item.title]]" placeholder-img="[[item.placeholder]]"></shop-image>
           </a>
           <h2>[[item.title]]</h2>
           <shop-button>
@@ -124,6 +125,9 @@ class ShopHome extends PolymerElement {
       this.dispatchEvent(new CustomEvent('change-section', {
         bubbles: true, composed: true, detail: {title: 'Home'}}));
     }
+  }
+  _getImageUrl (image) {
+    return getImageUrl(image);
   }
 }
 

@@ -7,6 +7,7 @@ import './shop-image.js';
 import './shop-list-item.js';
 import { Debouncer } from '@polymer/polymer/lib/utils/debounce.js';
 import { microTask } from '@polymer/polymer/lib/utils/async.js';
+import { getImageUrl } from './config.js';
 
 class ShopList extends PolymerElement {
   static get template() {
@@ -80,13 +81,14 @@ class ShopList extends PolymerElement {
     -->
     <shop-category-data
         id="categoryData"
+        ready="{{dataReady}}"
         category-name="[[routeData.category]]"
         category="{{category}}"
         failure="{{failure}}"></shop-category-data>
 
     <shop-image
         alt="[[category.title]]"
-        src="[[category.image]]"
+        src="[[_getImageUrl(category.image)]]"
         placeholder-img="[[category.placeholder]]" class="hero-image"></shop-image>
 
     <header>
@@ -126,6 +128,8 @@ class ShopList extends PolymerElement {
     route: Object,
 
     routeData: Object,
+
+    dataReady: Boolean,
 
     visible: {
       type: Boolean,
@@ -176,7 +180,7 @@ class ShopList extends PolymerElement {
   }
 
   _categoryChanged(category, visible) {
-    if (!visible) {
+    if (!(visible && this.dataReady)) {
       return;
     }
     this._changeSectionDebouncer = Debouncer.debounce(this._changeSectionDebouncer,
@@ -187,7 +191,7 @@ class ShopList extends PolymerElement {
             bubbles: true, composed: true, detail: {
               category: category.name,
               title: category.title,
-              image: this.baseURI + category.image
+              image: this.baseURI + this._getImageUrl(category.image)
             }}));
         } else {
           this.dispatchEvent(new CustomEvent('show-invalid-url-warning', {
@@ -204,6 +208,10 @@ class ShopList extends PolymerElement {
     if (!offline && this.isAttached) {
       this._tryReconnect();
     }
+  }
+
+  _getImageUrl (image) {
+    return getImageUrl(image);
   }
 
 }

@@ -78,7 +78,7 @@ class ShopCart extends PolymerElement {
   }}
 
   _formatTotal(total) {
-    return isNaN(total) ? '' : total.toFixed(2) + ' تومان';
+    return isNaN(total) ? '' : total + ' تومان';
   }
 
   _computeHasItem(cartLength) {

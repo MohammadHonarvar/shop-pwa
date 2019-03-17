@@ -36,69 +36,77 @@ x-srv:
 x-labels:
   &pazh-labels
   pazh.project: $PROJECT
-  pazh.domain:  $DOMAIN
+  pazh.domain:  $DOMAIN_PWA
   pazh.version: 'v2.0.0'
 
 services:
   pwa:
     << : *pazh-srv
     build: .
-    hostname: $DOMAIN # set to fqdn of host
+    hostname: $DOMAIN_PWA # set to fqdn of host
     networks:
       - web
     labels:
       << : *pazh-labels
       traefik.enable: true
-      traefik.backend: ${PROJECT}
+      traefik.backend: ${PROJECT}-pwa
       traefik.port: 8080
-      traefik.frontend.rule: Host:${DOMAIN}
+      traefik.frontend.rule: Host:${DOMAIN_PWA}
       traefik.frontend.entryPoints: http, https
       traefik.frontend.redirect.entryPoint: https
 
-#   api:
-#     << : *pazh-srv
-#     image: strapi/strapi # https://hub.docker.com/r/strapi/strapi
-#     networks:
-#       - internal
-#       - web
+  api:
+    << : *pazh-srv
+    image: strapi/strapi # https://hub.docker.com/r/strapi/strapi
+    networks:
+      - internal
+      - web
+    depends_on:
+      - database
 
-#     volumes:
-#       - type: bind
-#         source: ./_data/api
-#         target: /usr/src/api/$PROJECT
+    volumes:
+      - type: bind
+        source: ./api
+        target: /usr/src/api/$PROJECT
 
-#     environment:
-#       APP_NAME: $PROJECT
-#       DATABASE_CLIENT: mongo
-#       DATABASE_HOST: db
-#       DATABASE_PORT: 27017
-#       DATABASE_NAME: $DATABASE_NAME
-#       #DATABASE_SSL: false
-#       #DATABASE_USERNAME: $DATABASE_USERNAME
-#       #DATABASE_PASSWORD: $DATABASE_PASSWORD
-#       DATABASE_AUTHENTICATION_DATABASE: $DATABASE_NAME
-#       # HOST: localhost
 
-#     labels:
-#       traefik.enable: true
-#       traefik.backend: ${PROJECT}-api
-#       traefik.port: 1337
-#       traefik.frontend.rule: Host:${DOMAIN}
-#       traefik.frontend.entryPoints: http, https
-#       traefik.frontend.redirect.entryPoint: https
+    environment:
+      APP_NAME: $PROJECT
+      HOST: 0.0.0.0
+      DATABASE_CLIENT: mongo
+      DATABASE_HOST: database
+      DATABASE_PORT: 27017
+      DATABASE_NAME: $DATABASE_NAME
+      DATABASE_USERNAME: $DATABASE_USERNAME
+      DATABASE_PASSWORD: $DATABASE_PASSWORD
+      DATABASE_AUTHENTICATION_DATABASE: admin
+      #DATABASE_SSL: false
+      #DATABASE_SRV: false
 
-#   db:
-#     image: mongo
-#     networks:
-#       - internal
-#     restart: unless-stopped
+    labels:
+      << : *pazh-labels
+      traefik.enable: true
+      traefik.backend: ${PROJECT}-api
+      traefik.port: 1337
+      traefik.frontend.rule: Host:${DOMAIN_API}
+      traefik.frontend.entryPoints: http, https
+      traefik.frontend.redirect.entryPoint: https
 
-#     volumes:
-#       - type: bind
-#         source: ./_data/database
-#         target: /data/db
+  database:
+    << : *pazh-srv
+    image: mongo
+    networks:
+      - internal
 
-#     environment:
-#       MONGO_INITDB_DATABASE: $DATABASE_NAME
-#       #MONGO_INITDB_ROOT_USERNAME: $DATABASE_USERNAME
-#       #MONGO_INITDB_ROOT_PASSWORD: $DATABASE_PASSWORD
+    volumes:
+      - type: bind
+        source: ./_data/database
+        target: /data/db
+
+    environment:
+      MONGO_INITDB_DATABASE: $DATABASE_NAME
+      MONGO_INITDB_ROOT_USERNAME: $DATABASE_USERNAME
+      MONGO_INITDB_ROOT_PASSWORD: $DATABASE_PASSWORD
+
+    labels:
+      << : *pazh-labels

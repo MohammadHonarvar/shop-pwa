@@ -15,10 +15,6 @@
       "type": "string",
       "required": true
     },
-    "description": {
-      "default": "",
-      "type": "text"
-    },
     "title": {
       "default": "",
       "type": "string",
@@ -31,8 +27,8 @@
     },
     "tags": {
       "collection": "tag",
-      "dominant": true,
-      "via": "products"
+      "via": "products",
+      "dominant": true
     },
     "largeImage": {
       "model": "file",
@@ -45,6 +41,10 @@
       "via": "related",
       "plugin": "upload",
       "required": true
+    },
+    "description": {
+      "default": "",
+      "type": "text"
     }
   }
 }

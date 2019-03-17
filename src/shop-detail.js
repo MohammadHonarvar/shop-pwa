@@ -261,7 +261,7 @@ class ShopDetail extends PolymerElement {
   }
 
   _formatPrice(price) {
-    return price ? price.toFixed(2) + ' تومان' : '';
+    return price ? price + ' تومان' : '';
   }
 
   _addToCart() {

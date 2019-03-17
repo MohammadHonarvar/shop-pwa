@@ -78,6 +78,7 @@ class ShopDetail extends PolymerElement {
         margin: 0;
         color: var(--app-secondary-color);
         text-align: justify;
+        white-space: pre-line;
       }
 
       .pickers {

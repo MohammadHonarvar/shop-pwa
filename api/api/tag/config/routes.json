@@ -2,7 +2,7 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/tags",
+      "path": "/tagList",
       "handler": "Tag.find",
       "config": {
         "policies": []
@@ -10,7 +10,7 @@
     },
     {
       "method": "GET",
-      "path": "/tags/count",
+      "path": "/tagList/count",
       "handler": "Tag.count",
       "config": {
         "policies": []
@@ -18,7 +18,7 @@
     },
     {
       "method": "GET",
-      "path": "/tags/:_id",
+      "path": "/tag/:_id",
       "handler": "Tag.findOne",
       "config": {
         "policies": []
@@ -26,7 +26,7 @@
     },
     {
       "method": "POST",
-      "path": "/tags",
+      "path": "/tag",
       "handler": "Tag.create",
       "config": {
         "policies": []
@@ -34,7 +34,7 @@
     },
     {
       "method": "PUT",
-      "path": "/tags/:_id",
+      "path": "/tag/:_id",
       "handler": "Tag.update",
       "config": {
         "policies": []
@@ -42,7 +42,7 @@
     },
     {
       "method": "DELETE",
-      "path": "/tags/:_id",
+      "path": "/tag/:_id",
       "handler": "Tag.destroy",
       "config": {
         "policies": []

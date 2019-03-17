@@ -107,7 +107,7 @@ class ShopCategoryData extends PolymerElement {
     }
     this._getResource({
       // url: 'data/' + category.name + '.json',
-      url: `${config.api.baseUrl}/products?tags=${category._id}`,
+      url: `${config.api.baseUrl}/productList?tags=${category._id}`,
       onLoad(e) {
         this.set('category.items', JSON.parse(e.target.responseText));
       },

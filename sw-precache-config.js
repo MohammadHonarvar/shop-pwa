@@ -12,7 +12,7 @@ module.exports = {
       handler: 'fastest'
     },
     {
-      urlPattern: /^https:\/\/account.modir.app\//,
+      urlPattern: /^https:\/\/api.parsian.shop\//,
       handler: 'fastest'
     }
   ]

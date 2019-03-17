@@ -1,6 +1,6 @@
 export const config = {
   api: {
-    baseUrl: 'https://account.modir.app',
+    baseUrl: 'https://api.parsian.shop',
   }
 }
 

@@ -1,0 +1,38 @@
+{
+  "connection": "default",
+  "collectionName": "Tag",
+  "info": {
+    "name": "tag",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "default": "",
+      "unique": true,
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "placeholder": {
+      "default": "",
+      "type": "string"
+    },
+    "products": {
+      "collection": "product",
+      "via": "tags"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": true
+    }
+  }
+}

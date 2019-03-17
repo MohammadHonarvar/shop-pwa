@@ -3,36 +3,7 @@ import { Debouncer } from '@polymer/polymer/lib/utils/debounce.js';
 import { timeOut } from '@polymer/polymer/lib/utils/async.js';
 import { config } from './config';
 
-let categoryList = [
-  {
-    _id: '5c7b05abbc3dc4400cafc304',
-    name: 'پیراهن-مردانه',
-    title: 'پیراهن مردانه',
-    image: 'images/mens_outerwear.jpg',
-    placeholder: 'data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAeAAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAQCwsLDAsQDAwQFw8NDxcbFBAQFBsfFxcXFxcfHhcaGhoaFx4eIyUnJSMeLy8zMy8vQEBAQEBAQEBAQEBAQEBAAREPDxETERUSEhUUERQRFBoUFhYUGiYaGhwaGiYwIx4eHh4jMCsuJycnLis1NTAwNTVAQD9AQEBAQEBAQEBAQED/wAARCAADAA4DASIAAhEBAxEB/8QAXAABAQEAAAAAAAAAAAAAAAAAAAIEAQEAAAAAAAAAAAAAAAAAAAACEAAAAwYHAQAAAAAAAAAAAAAAERMBAhIyYhQhkaEDIwUVNREBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A3dkr5e8tfpwuneJITOzIcmQpit037Bw4mnCVNOpAAQv/2Q=='
-  },
-  {
-    _id: '5c7b05eebc3dc4400cafc307',
-    name: 'پیراهن-زنانه',
-    title: 'پیراهن زنانه',
-    image: 'images/ladies_outerwear.jpg',
-    placeholder: 'data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAeAAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAQCwsLDAsQDAwQFw8NDxcbFBAQFBsfFxcXFxcfHhcaGhoaFx4eIyUnJSMeLy8zMy8vQEBAQEBAQEBAQEBAQEBAAREPDxETERUSEhUUERQRFBoUFhYUGiYaGhwaGiYwIx4eHh4jMCsuJycnLis1NTAwNTVAQD9AQEBAQEBAQEBAQED/wAARCAADAA4DASIAAhEBAxEB/8QAWQABAQAAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAAAAAAIDEAABAwMFAQAAAAAAAAAAAAARAAEygRIDIlITMwUVEQEBAAAAAAAAAAAAAAAAAAAAQf/aAAwDAQACEQMRAD8Avqn5meQ0kwk1UyclmLtNj7L4PQoioFf/2Q=='
-  },
-  {
-    _id: '5c7b0628bc3dc4400cafc30a',
-    name: 'تیشرت-مردانه',
-    title: 'تیشرت مردانه',
-    image: 'images/mens_tshirts.jpg',
-    placeholder: 'data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAeAAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAQCwsLDAsQDAwQFw8NDxcbFBAQFBsfFxcXFxcfHhcaGhoaFx4eIyUnJSMeLy8zMy8vQEBAQEBAQEBAQEBAQEBAAREPDxETERUSEhUUERQRFBoUFhYUGiYaGhwaGiYwIx4eHh4jMCsuJycnLis1NTAwNTVAQD9AQEBAQEBAQEBAQED/wAARCAADAA4DASIAAhEBAxEB/8QAWwABAQEAAAAAAAAAAAAAAAAAAAMEAQEAAAAAAAAAAAAAAAAAAAAAEAABAwEJAAAAAAAAAAAAAAARAAESEyFhodEygjMUBREAAwAAAAAAAAAAAAAAAAAAAEFC/9oADAMBAAIRAxEAPwDb7kupZU1MTGnvOCgxpvzEXTyRElCmf//Z'
-  },
-  {
-    _id: '5c7b0662bc3dc4400cafc30d',
-    name: 'تیشرت-زنانه',
-    title: 'تیشرت زنانه',
-    image: 'images/ladies_tshirts.jpg',
-    placeholder: 'data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAeAAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAQCwsLDAsQDAwQFw8NDxcbFBAQFBsfFxcXFxcfHhcaGhoaFx4eIyUnJSMeLy8zMy8vQEBAQEBAQEBAQEBAQEBAAREPDxETERUSEhUUERQRFBoUFhYUGiYaGhwaGiYwIx4eHh4jMCsuJycnLis1NTAwNTVAQD9AQEBAQEBAQEBAQED/wAARCAADAA4DASIAAhEBAxEB/8QAXwABAQEAAAAAAAAAAAAAAAAAAAMFAQEBAAAAAAAAAAAAAAAAAAABAhAAAQIDCQAAAAAAAAAAAAAAEQABITETYZECEjJCAzMVEQACAwAAAAAAAAAAAAAAAAAAATFBgf/aAAwDAQACEQMRAD8AzeADAZiFc5J7BC9Scek3VrtooilSNaf/2Q=='
-  }
-];
+let categoryList;
 
 class ShopCategoryData extends PolymerElement {
 
@@ -44,16 +15,18 @@ class ShopCategoryData extends PolymerElement {
 
     itemName: String,
 
+    ready: Boolean,
+
     categories: {
       type: Array,
-      value: categoryList,
+      value: [],
       readOnly: true,
       notify: true
     },
 
     category: {
       type: Object,
-      computed: '_computeCategory(categoryName)',
+      computed: '_computeCategory(categoryName, categories)',
       notify: true
     },
 
@@ -71,6 +44,34 @@ class ShopCategoryData extends PolymerElement {
 
   }}
 
+  ready () {
+    super.ready();
+    this._fetchCategories();
+  }
+
+  _fetchCategories() {
+    // console.log('_fetchCategories');
+    if (Array.isArray(categoryList) && categoryList.length) {
+      this._setCategories(categoryList);
+      this.ready = true;
+      // console.log('_fetchCategories loaded from cache');
+      return;
+    }
+
+    // fetch data
+    this._getResource({
+      url: `${config.api.baseUrl}/tagList`,
+      onLoad(e) {
+        categoryList = JSON.parse(e.target.responseText);
+        // console.log('_fetchCategories loaded');
+        this._fetchCategories();
+      },
+      onError(e) {
+        this._setFailure(true);
+      }
+    }, 3);
+  }
+
   _getCategoryObject(categoryName) {
     for (let i = 0, c; c = this.categories[i]; ++i) {
       if (c.name === categoryName) {
@@ -79,10 +80,13 @@ class ShopCategoryData extends PolymerElement {
     }
   }
 
-  _computeCategory(categoryName) {
+  _computeCategory(categoryName, categories) {
     // Fetch the items of the category. Note that the fetch is asynchronous,
     // which means `category.items` may not be set initially (but that path
     // will be notified when the fetch completes).
+    if (!(categoryName && Array.isArray(categories) && categories.length)) return;
+    // console.log('_computeCategory: %o', {categories,categoryName});
+
     let categoryObj = this._getCategoryObject(categoryName);
     this._fetchItems(categoryObj, 1);
     return categoryObj;
@@ -107,7 +111,7 @@ class ShopCategoryData extends PolymerElement {
     }
     this._getResource({
       // url: 'data/' + category.name + '.json',
-      url: `${config.api.baseUrl}/products?tags=${category._id}`,
+      url: `${config.api.baseUrl}/productList?tags=${category._id}`,
       onLoad(e) {
         this.set('category.items', JSON.parse(e.target.responseText));
       },

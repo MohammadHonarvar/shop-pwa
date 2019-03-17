@@ -362,6 +362,8 @@ class ShopApp extends PolymerElement {
       window.addEventListener('online', (e)=>this._notifyNetworkStatus(e));
       window.addEventListener('offline', (e)=>this._notifyNetworkStatus(e));
     });
+
+    console.log("%cPWA Shop v1.0.0-rc", 'color: lightblue; font-size: 1.3em;')
   }
 
   _routePageChanged(page) {

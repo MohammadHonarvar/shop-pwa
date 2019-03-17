@@ -45,15 +45,16 @@ class ShopCategoryData extends PolymerElement {
   }}
 
   ready () {
+    super.ready();
     this._fetchCategories();
   }
 
   _fetchCategories() {
-    console.log('_fetchCategories');
+    // console.log('_fetchCategories');
     if (Array.isArray(categoryList) && categoryList.length) {
       this._setCategories(categoryList);
       this.ready = true;
-      console.log('_fetchCategories loaded from cache');
+      // console.log('_fetchCategories loaded from cache');
       return;
     }
 
@@ -62,7 +63,7 @@ class ShopCategoryData extends PolymerElement {
       url: `${config.api.baseUrl}/tagList`,
       onLoad(e) {
         categoryList = JSON.parse(e.target.responseText);
-        console.log('_fetchCategories loaded');
+        // console.log('_fetchCategories loaded');
         this._fetchCategories();
       },
       onError(e) {
@@ -84,7 +85,7 @@ class ShopCategoryData extends PolymerElement {
     // which means `category.items` may not be set initially (but that path
     // will be notified when the fetch completes).
     if (!(categoryName && Array.isArray(categories) && categories.length)) return;
-    console.log('_computeCategory: %o', {categories,categoryName});
+    // console.log('_computeCategory: %o', {categories,categoryName});
 
     let categoryObj = this._getCategoryObject(categoryName);
     this._fetchItems(categoryObj, 1);
